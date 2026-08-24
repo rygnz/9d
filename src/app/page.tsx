@@ -19,6 +19,10 @@ export default function Home() {
         className={`
           ${mobileMenu ? "opacity-85" : ""}
           transition-all
+          px-12
+          sm:px-14
+          lg:px-32
+          md:px-18
         `}
       >
         <ul
@@ -225,15 +229,22 @@ export default function Home() {
         </div>
       </MobileMenu>
       <Page
+        id="home"
         className={`
-          md:flex
+          lg:px-54
+          md:px-24
+          sm:px-12
           bg-transparent
           bg-linear-to-tl
           from-red-600/20
           to-black
         `}
       >
-        <div>
+        <div
+          className={`
+            lg:max-w-2xl
+          `}
+        >
           <span
             className={`
               flex
@@ -262,6 +273,7 @@ export default function Home() {
           </span>
           <h1
             className={`
+              lg:text-6xl
               text-5xl
               font-sans
               tracking-tight
@@ -300,11 +312,15 @@ export default function Home() {
               Kenalan Sama Kami
             </span>
           </Button>
+        </div>
           <div
             className={`
+              select-none
               rounded-lg
               bg-slate-950/80
               p-4
+              w-max
+              h-max
               mt-12
               -rotate-6
               shadow-2xl
@@ -314,14 +330,14 @@ export default function Home() {
             <Image
               src="/src.public.photo_of_us.jpg"
               alt="Foto kelas IX-D"
-              width={600}
-              height={400}
-              className="rounded-md object-cover"
+              width={540}
+              height={360}
+              className="rounded-md object-cover select-none"
             />
           </div>
-        </div>
       </Page>
       <Page
+        id="struktur_kelas"
         backgroundColor="bg-white"
       >
 

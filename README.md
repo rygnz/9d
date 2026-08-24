@@ -23,3 +23,7 @@ Check out my github [Github](https://github.com/rygnz)
 Next.js
 Lucide React
 ```
+
+## For your information
+
+This project is made just for fun, and its not done yet, were stll cookin, Just wait...

@@ -30,6 +30,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         ${geistSans.variable}
         ${geistMono.variable}
         ${fredoka.variable}
+        overflow-x-hidden
         scroll-smooth
         h-full
         antialiased
