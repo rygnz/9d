@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Fredoka, Geist, Geist_Mono, Roboto } from "next/font/google";
+import { Fredoka, Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -18,8 +18,8 @@ const fredoka = Fredoka({
 })
 
 export const metadata: Metadata = {
-  title: "IX - D",
-  description: "Generate By NEXT.JS",
+  title: "IX - D | SMPN 13 MALANG",
+  description: "Generate By NEXT.JS | Created by rygenzz",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -35,7 +35,16 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         h-full
         antialiased
         
-        selection:bg-slate-100 selection:text-slate-950`}
+        selection:bg-white selection:text-black
+        overflow-y-auto
+
+        [&::-webkit-scrollbar]:h-1
+        [&::-webkit-scrollbar]:w-1
+        [&::-webkit-scrollbar-track]:bg-black 
+        [&::-webkit-scrollbar-thumb]:bg-white
+        [&::-webkit-scrollbar-thumb]:rounded-md
+        [&::-webkit-scrollbar-thumb]:drop-shadow-2xl
+      `}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>

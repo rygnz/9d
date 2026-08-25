@@ -13,7 +13,7 @@ interface ButtonInterface extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const ButtonVariant = {
   primary :
-    "rounded-md px-3 py-2",
+    "rounded-md p-2",
   bordered : 
     "rounded-md px-2 py-1 border-2",
   primaryFullRound :

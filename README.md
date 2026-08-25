@@ -21,7 +21,11 @@ Check out my github [Github](https://github.com/rygnz)
 
 ```
 Next.js
+Tailwind Css
 Lucide React
+Vercel
+React
+TypeScript
 ```
 
 ## For your information

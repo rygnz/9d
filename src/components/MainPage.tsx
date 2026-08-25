@@ -19,19 +19,17 @@ export function Page({
       className={`
         ${className ?? ""}
         ${backgroundColor}
+        md:pt-0
         flex
         flex-col
-        md:flex-row
         justify-between
         items-center
         gap-10
         w-full
         min-h-[calc(100svh-57px)]
+        pt-32
         px-6
         py-16
-        md:px-12
-        lg:px-24
-        md:py-20
       `}
     >
       {children}      

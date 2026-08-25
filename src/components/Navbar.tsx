@@ -32,9 +32,11 @@ export function Navbar({
           h-max
           p-3
 
-          bg-black
+          bg-black/75
+          backdrop-blur-sm
           border-b-2
           border-b-slate-100/10
+          z-100
         `}
       >
         {children}
