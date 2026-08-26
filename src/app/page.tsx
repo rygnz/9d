@@ -787,7 +787,7 @@ export default function Home() {
               <div>
                 <span
                   className={`
-                    text-white
+                    text-black
                     drop-shadow-2xl
                     font-fredoka
                     font-semi
@@ -806,6 +806,7 @@ export default function Home() {
                     w-12
                     h-12
                     bg-black
+                    text-white
                     flex
                     justify-center
                     items-center
