@@ -58,7 +58,7 @@ export const en_us = {
   },
   page_our_story : {
     title : {
-      upper_text : "About us.",
+      upper_text : "Our story.",
       heading : {
         text1 : "Every class has its ",
         text2 : "own story, ",

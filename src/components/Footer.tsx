@@ -81,7 +81,9 @@ export function Footers({
               position="top"
               text="Github"
             >
-              <a href="https://github.com/rygnz">
+              <a href="https://github.com/rygnz"
+                className={`text-white`}
+              >
                 <Users/>
               </a>
             </Tooltip>
@@ -96,7 +98,9 @@ export function Footers({
               position="top"
               text="Instagram"
             >
-              <a href="https://www.instagram.com/rygnzzncc/">
+              <a href="https://www.instagram.com/rygnzzncc/"
+                className={`text-white`}
+              >
                 <Share2/>
               </a>
             </Tooltip>
@@ -111,7 +115,9 @@ export function Footers({
               position="top"
               text="Tiktok"
             >
-              <a href="https://www.tiktok.com/@genzzwae">
+              <a href="https://www.tiktok.com/@genzzwae"
+                className={`text-white`}
+              >
                 <Paperclip/>
               </a>
             </Tooltip>
@@ -126,7 +132,9 @@ export function Footers({
               position="top"
               text="anggatakp@gmail.com"
             >
-              <span>
+              <span
+                className={`text-white`}
+              >
                 <Mail/>
               </span>
             </Tooltip>

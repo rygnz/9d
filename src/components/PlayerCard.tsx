@@ -75,7 +75,11 @@ export function PlayerCard({
             select-none
           `}
         >
-          <span>
+          <span
+            className={`
+              text-white
+            `}
+          >
             {title.charAt(0).toUpperCase()}{title.charAt(title.length * 0.6).toUpperCase()}
           </span>
         </div>

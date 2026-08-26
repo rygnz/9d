@@ -36,6 +36,7 @@ export function MobileMenu({
           border-2
           border-slate-100/20
           p-4
+          text-white
 
           rounded-md
         `}

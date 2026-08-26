@@ -3,12 +3,14 @@ type ATextType = {
   children?: React.ReactNode | string
   clickAction ? : () => void
   href : string
+  className ? : string
 }
 
 export function AText({
   clickAction,
   children,
-  href
+  href,
+  className
 }:ATextType) {
   return(
     <a href={href}

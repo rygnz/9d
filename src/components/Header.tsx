@@ -104,6 +104,7 @@ export function Header({
                   text-4xl
                   font-sans
                   tracking-wide
+                  text-white
                 `}
               >
                 {textHeading}

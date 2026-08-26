@@ -68,7 +68,11 @@ export default function Home() {
               uppercase
             `}
           >
-            <a href="#home">
+            <a href="#home"
+              className={`
+                text-white
+              `}
+            >
               <span>
                 IX - D
               </span>
@@ -80,7 +84,11 @@ export default function Home() {
               >
                 /
               </span>
-              <span>
+              <span
+                className={`
+                  text-white
+                `}
+              >
                 26 - 27
               </span>
             </a>
@@ -244,6 +252,9 @@ export default function Home() {
             clickAction={() => {
               setMobileMenu(false)
             }}
+            className={`
+              text-white
+            `}
           >
             {lang == "en" ? en_us.navbar.home : id.navbar.home}
           </AText>
@@ -252,6 +263,9 @@ export default function Home() {
             clickAction={() => {
               setMobileMenu(false)
             }}
+            className={`
+              text-white
+            `}
           >
             {lang == "en" ? en_us.navbar.stucture : id.navbar.stucture}
           </AText>
@@ -260,6 +274,9 @@ export default function Home() {
             clickAction={() => {
               setMobileMenu(false)
             }}
+            className={`
+              text-white
+            `}
           >
             {lang == "en" ? en_us.navbar.about_us : id.navbar.about_us}
           </AText>
@@ -268,6 +285,9 @@ export default function Home() {
             clickAction={() => {
               setMobileMenu(false)
             }}
+            className={`
+              text-white
+            `}
           >
             {lang == "en" ? en_us.navbar.our_stories : id.navbar.our_stories}
           </AText>
@@ -276,6 +296,9 @@ export default function Home() {
             clickAction={() => {
               setMobileMenu(false)
             }}
+            className={`
+              text-white
+            `}
           >
             {lang == "en" ? en_us.navbar.art : id.navbar.art}
           </AText>
@@ -764,7 +787,7 @@ export default function Home() {
               <div>
                 <span
                   className={`
-                    text-black
+                    text-white
                     drop-shadow-2xl
                     font-fredoka
                     font-semi
@@ -950,6 +973,7 @@ export default function Home() {
           <CardText
             backgroundPrimaryColor="bg-red-400"
             backgroundSecondaryColor="bg-red-900"
+            textColor="text-white"
             icon= {<Sun/>}
             subtitle={lang == "en" ? en_us.page_art.body.card1.subtitle : id.page_art.body.card1.subtitle}
             title={lang == "en" ? en_us.page_art.body.card1.title : id.page_art.body.card1.title}
