@@ -292,7 +292,8 @@ export default function Home() {
 
           sm:py-34
           md:pt-32
-          bg-transparent
+          dark:bg-transparent
+          bg-slate-950
           bg-linear-to-tl
           from-red-600/20
           to-black
@@ -474,11 +475,11 @@ export default function Home() {
           lg:px-42
           lg:flex-col
           lg:pt-24
-          bg-transparent
+          dark:bg-transparent
+          bg-slate-950
           bg-linear-to-bl
           from-red-600/20
           to-black
-
         `}
       >
         <Header
@@ -654,7 +655,8 @@ export default function Home() {
           lg:px-42
           md:mt-52
           md:px-16
-          bg-transparent
+          dark:bg-transparent
+          bg-slate-950
           bg-linear-to-bl
           from-black
           to-red-600/20
@@ -839,7 +841,8 @@ export default function Home() {
         className={`
           lg:pt-24
           lg:px-32
-          bg-transparent
+          dark:bg-transparent
+          bg-slate-950
           bg-linear-to-br
           from-red-600/20
           to-black
@@ -919,7 +922,8 @@ export default function Home() {
           lg:mt-52
           md:mt-24
           bg-linear-to-b
-          bg-transparent
+          dark:bg-transparent
+          bg-slate-950
           from-black
           to-red-600/20
         `}
