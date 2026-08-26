@@ -15,6 +15,7 @@ export function AText({
   return(
     <a href={href}
       className={`
+        ${className ?? ""}
         font-fredoka
         tracking-tighter
         hover:text-slate-400
