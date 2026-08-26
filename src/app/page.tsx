@@ -11,27 +11,39 @@ import { MobileMenu } from "@/components/MobileMenu";
 import { Navbar } from "@/components/Navbar";
 import { PlayerCard } from "@/components/PlayerCard";
 import { Tooltip } from "@/components/Tooltip";
-import { ArrowUpRight, Ellipsis, Mail, Paperclip, Share2, Sun, Trees, User} from "lucide-react";
+import { ArrowUpRight, Ellipsis, Globe, Sun, Trees} from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { Footers } from "../components/Footer";
+import { FooterSection } from "@/components/FooterSection";
+import { en_us, id } from "./lang/lang";
+import { motion } from "motion/react";
+import { TypingText } from "@/components/TypingText";
 
 
 export default function Home() {
   const [mobileMenu,setMobileMenu] = useState<boolean>(false)
   const [dayPassed,setDayPassed] = useState<number>(0)
+  const [lang,setLang] = useState<"en"|"id">("en")
+  const [langCooldown,setLangCooldown] = useState<boolean>(false)
+
+
   useEffect(() => {
     const update = () => {
       const startDate = Date.UTC(2026,7)
       const differenceInMs = Date.now() - startDate
       const afterPassedNow = Math.max(0, Math.floor(differenceInMs / (1000 * 60 * 60 * 24)))
       setDayPassed(afterPassedNow)
+
+      setLang("en")
+      setLangCooldown(true)
     }
     update()
   },[])
 
   return (
     <main>
-      <Navbar // Navigation Bar
+      <Navbar // Navigation Bar // Transleted
         className={`
           select-none
           transition-all
@@ -91,7 +103,7 @@ export default function Home() {
                 tracking-tighter
               `}
             >
-              Home
+              {lang == "en" ? en_us.navbar.home : id.navbar.home}
             </a>
           </li>
           <li>
@@ -101,7 +113,7 @@ export default function Home() {
                 tracking-tighter
               `}
             >
-              Struktur kelas
+              {lang == "en" ? en_us.navbar.stucture : id.navbar.stucture}
             </a>
           </li>
           <li>
@@ -111,7 +123,7 @@ export default function Home() {
                 tracking-tighter
               `}
             >
-              Tentang kami
+              {lang == "en" ? en_us.navbar.about_us : id.navbar.about_us}
             </a>
           </li>
           <li>
@@ -121,7 +133,7 @@ export default function Home() {
                 tracking-tighter
               `}
             >
-              Cerita kita
+              {lang == "en" ? en_us.navbar.our_stories : id.navbar.our_stories}
             </a>
           </li>
           <li>
@@ -131,7 +143,7 @@ export default function Home() {
                 tracking-tighter
               `}
             >
-              Karya
+              {lang == "en" ? en_us.navbar.art : id.navbar.art}
             </a>
           </li>
         </ul>
@@ -172,21 +184,41 @@ export default function Home() {
                 gap-1
               `}
             >
-              Say hi.
-              <ArrowUpRight
-                className={`
-                  group-hover:rotate-45
-                  group-hover:scale-90
-                  group-active:translate-x-2
-                  transition-all
-                  duration-75
-                `}
-              />
+              {lang == "en" ? en_us.navbar.say_hi : id.navbar.say_hi}
+              <ArrowUpRight/>
             </a>
+          </Button>
+          <Button
+            backgroundColor="bg-transparent"
+            textColor="text-slate-50"
+            variant="none"
+            onClick={() => {
+              setLangCooldown(true)
+              if(langCooldown) {
+              } else {
+                if(lang == "en") {
+                  setLang("id")
+                } else if (lang == "id") {
+                  setLang("en")
+                }
+              }
+            }}
+            className={`
+              ${langCooldown ? "opacity-50 hover:cursor-not-allowed" : ""}
+            `}
+          >
+            <Tooltip
+              position="bottom"
+              text={lang == "en" ? en_us.navbar.change_lan : id.navbar.change_lan}
+            >
+              <span>
+                <Globe/>
+              </span>
+            </Tooltip>
           </Button>
         </ul>
       </Navbar>
-      <MobileMenu // Mobile Menu if seeing in mobile phone
+      <MobileMenu // Mobile Menu if seing in mobile phone // Transleted
         footer="#Credits by rygenzz"
         title="Mobile Menu"
         closeButtonAction={() => {
@@ -213,7 +245,7 @@ export default function Home() {
               setMobileMenu(false)
             }}
           >
-            Home
+            {lang == "en" ? en_us.navbar.home : id.navbar.home}
           </AText>
           <AText
             href="#struktur_kelas"
@@ -221,7 +253,7 @@ export default function Home() {
               setMobileMenu(false)
             }}
           >
-            Struktur kelas
+            {lang == "en" ? en_us.navbar.stucture : id.navbar.stucture}
           </AText>
           <AText
             href="#tentang_kami"
@@ -229,7 +261,7 @@ export default function Home() {
               setMobileMenu(false)
             }}
           >
-            Tentang kami
+            {lang == "en" ? en_us.navbar.about_us : id.navbar.about_us}
           </AText>
           <AText
             href="#cerita_kita"
@@ -237,7 +269,7 @@ export default function Home() {
               setMobileMenu(false)
             }}
           >
-            Cerita Kita
+            {lang == "en" ? en_us.navbar.our_stories : id.navbar.our_stories}
           </AText>
           <AText
             href="#karya"
@@ -245,12 +277,12 @@ export default function Home() {
               setMobileMenu(false)
             }}
           >
-            Karya
+            {lang == "en" ? en_us.navbar.art : id.navbar.art}
           </AText>
         </div>
       </MobileMenu>
 
-      <Page // Page 1 Introduction
+      <Page // Page 1 Introduction // Transleted
         id="home"
         className={`
           lg:flex-row
@@ -271,7 +303,17 @@ export default function Home() {
             lg:max-w-2xl
           `}
         >
-          <span
+          <motion.span
+            initial={{
+              opacity:0,
+            }}
+            animate={{
+              opacity:1,
+            }}
+            transition={{
+              duration:2,
+              ease : "easeOut"
+            }}
             className={`
               flex
               justify-start
@@ -296,9 +338,21 @@ export default function Home() {
                 h-0.5  
               `}
             />
-            Kelas dengan memori tanpa batas
-          </span>
-          <h1
+            {lang == "en" ? en_us.page_introduction.title.upper_text : id.page_introduction.title.upper_text}
+          </motion.span>
+          <motion.h1
+            initial={{
+              opacity:0,
+              y:20
+            }}
+            animate={{
+              opacity:1,
+              y:0
+            }}
+            transition={{
+              duration:3,
+              ease:"easeOut"
+            }}
             className={`
               lg:text-6xl
               text-5xl
@@ -307,9 +361,19 @@ export default function Home() {
               text-slate-100
             `}
           >
-            Kami datang untuk <span className="text-red-400 font-semibold italic hover:text-red-800 transition-all">tumbuh</span> dan <span className="text-red-400 font-semibold italic hover:text-red-800 transition-all">berkembang</span> bersama.
-          </h1>
-          <span
+            {lang == "en" ? en_us.page_introduction.title.heading.text1 : id.page_introduction.title.heading.text1}<span className="text-red-400 font-semibold italic hover:text-red-800 transition-all">{lang == "en" ? en_us.page_introduction.title.heading.text2 : id.page_introduction.title.heading.text2}</span> {lang == "en" ? en_us.page_introduction.title.heading.text3 : id.page_introduction.title.heading.text3} <span className="text-red-400 font-semibold italic hover:text-red-800 transition-all">{lang == "en" ? en_us.page_introduction.title.heading.text4 : id.page_introduction.title.heading.text4}</span> {lang == "en" ? en_us.page_introduction.title.heading.text5 : id.page_introduction.title.heading.text5}
+          </motion.h1>
+          <motion.span
+            initial={{
+              opacity:0
+            }}
+            animate={{
+              opacity:1
+            }}
+            transition={{
+              duration:1.2,
+              ease:"easeOut",
+            }}
             className={`
               md:text-xl
               flex
@@ -322,26 +386,65 @@ export default function Home() {
               text-slate-100/65
             `}
           >
-            Selamat datang di website IX - D | SMPN 13 MALANG, disinilah tempat kami menyimpan kenangan bersama, IX - D Solid sampai akhir, website khusus kelas IX - D yang dibuat oleh salah satu anggotanya. Website ini bukan Web resmi dari sekolah, melainkan dari salah satu anak didiknya.
-          </span>
-          <Button
-            backgroundColor="bg-slate-100"
-            textColor="text-slate-900"
-            variant="primaryFullRound"
-            animation={true}
+            <TypingText
+              text={lang == "en" ? en_us.page_introduction.title.subtitle : id.page_introduction.title.subtitle}
+              ms={15}
+              func={(e) => {setLangCooldown(e)}}
+            />
+          </motion.span>
+          <motion.a href="https://www.instagram.com/nine.dominoo"
+            initial={{
+              opacity:0,
+              scale:0
+            }}
+            animate={{
+              opacity:1,
+              scale:1
+            }}
+            transition={{
+              duration:0.6,
+              ease:"backOut",
+            }}
+            whileHover={{
+              rotate:3,
+              scale:1.05
+            }}
             className={`
-              hover:rotate-2
-              active:rotate-0
+              flex
+              justify-center
+              items-center
+              w-max
+              h-max
+              px-3
+              py-2
+              bg-slate-50
+              rounded-full
+              drop-shadow-2xl
+              text-slate-950
+              font-fredoka
               font-semibold
-              mt-5
+              mt-8
             `}
           >
-            <a href="https://www.instagram.com/nine.dominoo">
-              Kenalan Sama Kami
-            </a>
-          </Button>
+            {lang == "en" ? en_us.page_introduction.title.button : id.page_introduction.title.button}
+          </motion.a>
         </div>
-          <div
+          <motion.div
+            initial={{
+              opacity:0,
+              scale:0.1,
+              rotate:-3
+            }}
+            animate={{
+              opacity:1,
+              scale:1,
+              rotate:3
+            }}
+            transition={{
+              duration:1,
+              ease : "backOut",
+              delay:1
+            }}
             className={`
               select-none
               rounded-lg
@@ -363,9 +466,9 @@ export default function Home() {
               className="rounded-md object-cover select-none max-w-sm sm:max-w-lg md:max-w-xl lg:max-w-full"
               loading="eager"
             />
-          </div>
+          </motion.div>
       </Page>
-      <Page // Page 2 Structure Class
+      <Page // Page 2 Structure Class // Transleted
         id="struktur_kelas"
         className={`
           lg:px-42
@@ -379,9 +482,9 @@ export default function Home() {
         `}
       >
         <Header
-          sectionName="Stuktur kelas"
-          textHeading={<span>Tiada kelas yang kondusif tanpa seorang <span className={`text-red-400 italic font-semibold`}>pemimpin</span> yang tegas.</span>}
-          subtext="Kelas yang bersih, asri, asik, dan seru tidak tercipta begitu saja. Melainkan tumbuh dengan pemimpin yang jujur dan tegas. 32 Siswa berpartisipasi aktif dalam kelas ini."
+          sectionName={lang == "en" ? en_us.page_structure_class.title.upper_text : id.page_structure_class.title.upper_text}
+          textHeading={<span>{lang == "en" ? en_us.page_structure_class.title.heading.text1 : id.page_structure_class.title.heading.text1}<span className={`text-red-400 italic font-semibold`}>{lang == "en" ? en_us.page_structure_class.title.heading.text2 : id.page_structure_class.title.heading.text2}</span>{lang == "en" ? en_us.page_structure_class.title.heading.text3 : id.page_structure_class.title.heading.text3}</span>}
+          subtext={lang == "en" ? en_us.page_structure_class.title.subtitle : id.page_structure_class.title.subtitle}
         />
         <div // Player Card
           className={`
@@ -392,7 +495,7 @@ export default function Home() {
             lg:flex-row
             lg:overflow-x-scroll
             lg:max-w-2xl
-            lg:p-5
+            lg:p-8
             lg:gap-12
 
             [&::-webkit-scrollbar]:h-1
@@ -410,6 +513,7 @@ export default function Home() {
           `}
         >
           <PlayerCard
+            instagramUrl="https://www.instagram.com/ervin_novanti24"
             title="Siti Khoirun Ervin N, S.pd"
             subtitle="Wali Kelas IX - D"
             profileSize="lg"
@@ -490,7 +594,7 @@ export default function Home() {
             `}
           />
           <PlayerCard
-            title="n/a"
+            title="Mutiara Elsama"
             subtitle="Bendahara 1 Kelas IX - D"
             profileSize="default"
             className={`
@@ -506,7 +610,7 @@ export default function Home() {
             `}
           />
           <PlayerCard
-            title="n/a"
+            title="Rahma Kamila Putri"
             subtitle="Bendahara 2 Kelas IX - D"
             profileSize="default"
             className={`
@@ -540,11 +644,11 @@ export default function Home() {
               text-center
             `}
           >
-            Stuktur ini di dasarkan pemilihan bersama seluruh anggota kelas IX - D.
+            {lang == "en" ? en_us.page_structure_class.title.footer_structure : id.page_structure_class.title.footer_structure}
           </span>
         </div>
       </Page>
-      <Page // Page 3 About us
+      <Page // Page 3 About us // Transleted
         id="tentang_kami"
         className={`
           lg:px-42
@@ -564,27 +668,38 @@ export default function Home() {
           `}
         >
           <Header
-            sectionName="Tentang kami."
-            textHeading={<span>Tak kenal maka tak <span className={`text-red-400 font-semibold italic`}>sayang</span>, maka ini <span className={`text-red-400 font-semibold italic`}>tentang kami</span>.</span>}
-            subtext="Sebuah kisah yang tak pernah habis, tidak akan pernah ada jika kita tak saling mengenal satu sama lain, karena itu maka inilah tentang kami."
+            sectionName={lang == "en" ? en_us.page_about_us.title.upper_text : id.page_about_us.title.upper_text}
+            textHeading={<span>{lang == "en" ? en_us.page_about_us.title.heading.text1 : id.page_about_us.title.heading.text1}<span className={`text-red-400 font-semibold italic`}>{lang == "en" ? en_us.page_about_us.title.heading.text2 : id.page_about_us.title.heading.text2}</span>, {lang == "en" ? en_us.page_about_us.title.heading.text3 : id.page_about_us.title.heading.text3}<span className={`text-red-400 font-semibold italic`}>{lang == "en" ? en_us.page_about_us.title.heading.text4 : id.page_about_us.title.heading.text4}</span></span>}
+            subtext={lang == "en" ? en_us.page_about_us.subtitle : id.page_about_us.subtitle}
           />
-          <div // Subtitle
-            className={`
-              
-            `}
+          <motion.div // Subtitle
+            initial={{
+              opacity:0
+            }}
+            whileInView={{
+              opacity:1
+            }}
+            transition={{
+              duration:1,
+              ease:"backOut",
+              delay:1.2
+            }}
+            viewport={{
+              once : true
+            }}
           >
             <span
               className={`
                 md:text-2xl
                 text-md
                 text-slate-100
-                font-sans
+                font-fredoka
                 text-shadow-2xs
               `}
             >
-              Kami memiliki 32 anggota kelas IX - D, yang terdiri dari ketua, wakil, sekertaris, dan bendahara kelas. Kelas yang solid dan asik, sudah cukup lama waktu yang kita lewati, semoga kita terus mengenal. Kami memiliki instagram kelas yang cukup aktif. datanglah ke kelas kami jika kamu mau :P
+              {lang == "en" ? en_us.page_about_us.about_us : id.page_about_us.about_us}
             </span>
-          </div>
+          </motion.div>
           <div // Card
             className={`
               lg:flex-row
@@ -631,7 +746,7 @@ export default function Home() {
                     font-semi
                   `}
                 >
-                  Jumlah anggota IX - D
+                  {lang == "en" ? en_us.page_about_us.amout : id.page_about_us.amout}
                 </span>
               </div>
             </Card>
@@ -653,12 +768,12 @@ export default function Home() {
                     font-semi
                   `}
                 >
-                  Jumlah hari yang di lewati
+                  {lang == "en" ? en_us.page_about_us.day_passed : id.page_about_us.day_passed}
                 </span>
               </div>
               <Tooltip
                 position="top"
-                text="Jumlah Hari belum tentu benar."
+                text={lang == "en" ? en_us.page_about_us.tooltip_day_passed : id.page_about_us.tooltip_day_passed}
               >
                 <div
                   className={`
@@ -711,14 +826,14 @@ export default function Home() {
                     font-semi
                   `}
                 >
-                  Pertemuan Pertama
+                  {lang == "en" ? en_us.page_about_us.first_meet : id.page_about_us.first_meet}
                 </span>
               </div>
             </Card>
           </div>
         </div>
       </Page>
-      <Page // Page 4 Our story
+      <Page // Page 4 Our story // Transleted
         id="cerita_kita"
         backgroundColor="bg-black"
         className={`
@@ -731,9 +846,9 @@ export default function Home() {
         `}
       >
         <Header
-          sectionName="Cerita Kita."
-          subtext="Sebuah cerita yang penuh dengan cerita dan kenangan yang takkan terlupakan oleh kami."
-          textHeading={<span>Setiap kelas pasti memiliki <span className="text-red-400 italic font-semibold">cerita</span> masing masing, dan mereka memiliki kenangan yang dalam.</span>}
+          sectionName={lang == "en" ? en_us.page_our_story.title.upper_text : id.page_our_story.title.upper_text}
+          subtext={lang == "en" ? en_us.page_our_story.subtitle : id.page_our_story.subtitle}
+          textHeading={<span>{lang == "en" ? en_us.page_our_story.title.heading.text1 : id.page_our_story.title.heading.text1}<span className="text-red-400 italic font-semibold">{lang == "en" ? en_us.page_our_story.title.heading.text2 : id.page_our_story.title.heading.text2}</span>{lang == "en" ? en_us.page_our_story.title.heading.text3 : id.page_our_story.title.heading.text3}</span>}
         />
         <div // Card
           className={`
@@ -759,8 +874,8 @@ export default function Home() {
             textColor="text-white"
             height={120}
             width={120}
-            title="Lomba Bulutangkis Putri"
-            subtitle="Kelas kami memenangkan lomba bulutangkis putri dengan juara 1"
+            title={lang == "en" ? en_us.page_our_story.body.card1.title : id.page_our_story.body.card1.title}
+            subtitle={lang == "en" ? en_us.page_our_story.body.card1.subtitle : id.page_our_story.body.card1.subtitle}
             animation={true}
             className={`
               bg-red-950/60
@@ -773,8 +888,8 @@ export default function Home() {
             textColor="text-white"
             height={250}
             width={250}
-            title="Foto Bersama Arema"
-            subtitle="foto bareng satu kelas pakai baju arema."
+            title={lang == "en" ? en_us.page_our_story.body.card2.title : id.page_our_story.body.card2.title}
+            subtitle={lang == "en" ? en_us.page_our_story.body.card2.subtitle : id.page_our_story.body.card2.subtitle}
             animation={true}
             className={`
               bg-red-950/60
@@ -787,8 +902,8 @@ export default function Home() {
             textColor="text-white"
             height={250}
             width={250}
-            title="Lomba Kebersihan kelas"
-            subtitle="footage asli kita kerja membersihkan kelas"
+            title={lang == "en" ? en_us.page_our_story.body.card3.title : id.page_our_story.body.card3.title}
+            subtitle={lang == "en" ? en_us.page_our_story.body.card3.subtitle : id.page_our_story.body.card3.subtitle}
             animation={true}
             className={`
               bg-red-950/60
@@ -798,7 +913,7 @@ export default function Home() {
           />
         </div>
       </Page>
-      <Page // Page 5 Art
+      <Page // Page 5 Art // Transleted
         id="karya"
         className={`
           lg:mt-52
@@ -810,9 +925,9 @@ export default function Home() {
         `}
       >
         <Header
-          sectionName="Karya"
-          textHeading={<span>Sebuah <span className="text-red-400 font-semibold italic">karya tangan</span> yang takkan pernah ter luapakan</span>}
-          subtext="Sebuah karya tangan anggota IX - D yang sangat indah dan keren."
+          sectionName={lang == "en" ? en_us.page_art.title.upper_title : id.page_art.title.upper_title}
+          textHeading={<span>{lang == "en" ? en_us.page_art.title.heading.text1 : id.page_art.title.heading.text1}<span className="text-red-400 font-semibold italic">{lang == "en" ? en_us.page_art.title.heading.text2 : id.page_art.title.heading.text2}</span>{lang == "en" ? en_us.page_art.title.heading.text3 : id.page_art.title.heading.text3}</span>}
+          subtext={lang == "en" ? en_us.page_art.subtitle : id.page_art.subtitle}
         />
         <div // Card
           className={`
@@ -832,27 +947,27 @@ export default function Home() {
             backgroundPrimaryColor="bg-red-400"
             backgroundSecondaryColor="bg-red-900"
             icon= {<Sun/>}
-            subtitle="Karya majalah dinding yang merupakan hasil tangan, dan berisi informasi penting dari kelas IX - D"
-            title="Madding"
-            upperTitle="kelengkapan"
+            subtitle={lang == "en" ? en_us.page_art.body.card1.subtitle : id.page_art.body.card1.subtitle}
+            title={lang == "en" ? en_us.page_art.body.card1.title : id.page_art.body.card1.title}
+            upperTitle={lang == "en" ? en_us.page_art.body.card1.upper_text : id.page_art.body.card1.upper_text}
           />
           <CardText
             backgroundPrimaryColor="bg-red-300"
             backgroundSecondaryColor="bg-red-200"
             textColor="text-black"
             icon= {<Trees/>}
-            subtitle="Hasil perawatan taman depan kelas yang asri, dan sangatlah indah."
-            title="Taman"
-            upperTitle="kanyamanan"
+            subtitle={lang == "en" ? en_us.page_art.body.card2.subtitle : id.page_art.body.card2.subtitle}
+            title={lang == "en" ? en_us.page_art.body.card2.title : id.page_art.body.card2.title}
+            upperTitle={lang == "en" ? en_us.page_art.body.card2.upper_text : id.page_art.body.card2.upper_text}
           />
           <CardText
             backgroundPrimaryColor="bg-red-200"
             backgroundSecondaryColor="bg-red-300"
             textColor="text-black"
             icon= {<Sun/>}
-            subtitle="Karya seni hasil tangan yang tercipta dengan ide ide kreatif dari anggota IX - D"
-            title="Mural"
-            upperTitle="keindahan"
+            subtitle={lang == "en" ? en_us.page_art.body.card3.subtitle : id.page_art.body.card3.subtitle}
+            title={lang == "en" ? en_us.page_art.body.card3.title : id.page_art.body.card3.title}
+            upperTitle={lang == "en" ? en_us.page_art.body.card3.upper_text : id.page_art.body.card3.upper_text}
           />
         </div>
         <div // Word
@@ -872,319 +987,93 @@ export default function Home() {
         </div>
       </Page>
 
-      <footer // Footer
-        className={`
-          lg:flex-col
-          md:flex-row
-          bg-black
-          w-full
-          min-h-96
-          h-auto
-          flex
-          flex-col
-        `}
+      <Footers // Footer // Transleted
+        copyright={lang == "en" ? en_us.footer.section2.copyright : id.footer.section2.copyright}
+        title={
+          <div className={`flex flex-col`}>
+            <span className={`text-4xl font-sans tracking-wide text-white`}>{lang == "en" ? en_us.footer.section1.title.text1 : id.footer.section1.title.text1}</span>
+            <span className={`text-4xl font-sans tracking-wide text-red-400 font-semibold italic`}>{lang == "en" ? en_us.footer.section1.title.text2 : id.footer.section1.title.text2}</span>
+          </div>
+        }
+        note={lang == "en" ? en_us.footer.section2.note : id.footer.section2.note}
       >
-        <div
-          className={`
-            lg:flex-row
-            p-9
-            w-full
-            flex
-            flex-col
-            gap-12
-          `}
+        <FooterSection // Used tools
+          title={lang == "en" ? en_us.footer.section1.sec1.title : id.footer.section1.sec1.title}
         >
-          <div
-            className={`
-              flex
-              flex-col
-            `}
-          >
-            <span
-              className={`
-                text-4xl
-                font-sans
-                tracking-wide
-                text-white
-              `}
-            >
-              Mari membuat
-            </span>
-            <span
-              className={`
-                text-4xl
-                font-sans
-                tracking-wide
-                text-red-400
-                font-semibold
-                italic
-              `}
-            >
-              Cerita baru.
-            </span>
-          </div>
-          <div // Used tool
-            className={`
-              w-full
-              h-auto
-              flex
-              flex-col
-              gap-4
-            `}
-          >
-            <span
-              className={`
-                text-xl
-                uppercase
-                text-slate-100
-              `}
-            >
-              Alat yang di gunakan
-            </span>
-            <ul
-              className={`
-                text-md
-                gap-2
-                text-slate-100/70
-              `}
-            >
-              <li>
-                <a href="https://nextjs.org/" className="hover:text-slate-50 transition-all">Next JS</a>
-              </li>
-              <li>
-                <a href="https://tailwindcss.com/" className="hover:text-slate-50 transition-all">Tailwind CSS</a>
-              </li>
-              <li>
-                <a href="https://lucide.dev/" className="hover:text-slate-50 transition-all">Lucide React</a>
-              </li>
-              <li>
-                <a href="https://www.typescriptlang.org/" className="hover:text-slate-50 transition-all">TypeScript</a>
-              </li>
-              <li>
-                <a href="https://react.dev/" className="hover:text-slate-50 transition-all">React TypeScript</a>
-              </li>
-              <li>
-                <a href="https://vercel.com/home" className="hover:text-slate-50 transition-all">Vercel</a>
-              </li>
-            </ul>
-          </div>
-          <div // Credits
-            className={`
-              w-full
-              h-auto
-              flex
-              flex-col
-              gap-4
-            `}
-          >
-            <span
-              className={`
-                text-xl
-                uppercase
-                text-slate-100
-              `}
-            >
-              Orang yg terlibat.
-            </span>
-            <ul
-              className={`
-                text-md
-                gap-2
-                text-slate-100/70
-              `}
-            >
-              <li>
-                <span className="text-slate-100/90">Developer : </span><a href="https://www.instagram.com/rygnzzncc/">M Rafid Dwi Wicaksana</a>
-              </li>
-              <li>
-                <span className="text-slate-100/90">Tester 1: </span><a href="#">not defined yet</a>
-              </li>
-              <li>
-                <span className="text-slate-100/90">Tester 2: </span><a href="#">not defined yet</a>
-              </li>
-              <li>
-                <span className="text-slate-100/90">Member : </span>Seluruh anggota IX-D
-              </li>
-            </ul>
-          </div>
-          <div // About school
-            className={`
-              w-full
-              h-auto
-              flex
-              flex-col
-              gap-4
-            `}
-          >
-            <span
-              className={`
-                text-xl
-                uppercase
-                text-slate-100
-              `}
-            >
-              Tentang sekolah kita
-            </span>
-            <ul
-              className={`
-                text-md
-                gap-2
-                text-slate-100/70
-              `}
-            >
-              <li>
-                <span>
-                  Jawa timur
-                </span>
-              </li>
-              <li>
-                <span>
-                  SMPN 13 Kota Malang
-                </span>
-              </li>
-              <li>
-                <span>
-                  Lowokwaru, Dinoyo
-                </span>
-              </li>
-              <li>
-                <a href="https://smpn13malang.sch.id/" className="hover:text-slate-50 transition-all">School site</a>
-              </li>
-            </ul>
-          </div>
-          <div // Social Media
-            className={`
-              w-full
-              h-auto
-              flex
-              flex-col
-              gap-4
-            `}
-          >
-            <span
-              className={`
-                text-xl
-                uppercase
-                text-slate-100
-              `}
-            >
-              Media sosial
-            </span>
-            <ul
-              className={`
-                text-md
-                gap-2
-                text-slate-100/70
-              `}
-            >
-              <li>
-                <a href="https://www.instagram.com/nine.dominoo" className="hover:text-slate-50 transition-all">Instagram</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div // About me
-          className={`
-            bg-black
-            border-t-2
-            border-t-slate-100/20
-            w-full
-            h-auto
-            min-h-16
-            justify-start
-            items-center
-            flex
-            flex-col
-            p-6
-
-            gap-4
-          `}
+          <li>
+            <a href="https://nextjs.org/" className="hover:text-slate-50 transition-all">Next JS</a>
+          </li>
+          <li>
+            <a href="https://tailwindcss.com/" className="hover:text-slate-50 transition-all">Tailwind CSS</a>
+          </li>
+          <li>
+            <a href="https://lucide.dev/" className="hover:text-slate-50 transition-all">Lucide React</a>
+          </li>
+          <li>
+            <a href="https://www.typescriptlang.org/" className="hover:text-slate-50 transition-all">TypeScript</a>
+          </li>
+          <li>
+            <a href="https://react.dev/" className="hover:text-slate-50 transition-all">React TypeScript</a>
+          </li>
+          <li>
+            <a href="https://vercel.com/home" className="hover:text-slate-50 transition-all">Vercel</a>
+          </li>
+          <li>
+            <a href="https://motion.dev/" className="hover:text-slate-50 transition-all">Motion</a>
+          </li>
+          <li>
+            <a href="https://v0.app/" className="hover:text-slate-50 transition-all">v0 AI</a> <span className={`text-sm text-slate-50/30`}>As Design Reference</span>
+          </li>
+          <li>
+            <a href="https://www.deepl.com/id/translator" className="hover:text-slate-50 transition-all">DeepL</a> <span className={`text-sm text-slate-50/30`}>As Translator Reference</span>
+          </li>
+        </FooterSection>
+        <FooterSection // Credits
+          title={lang == "en" ? en_us.footer.section1.sec2.title : id.footer.section1.sec2.title}
         >
-          <span
-            className={`
-              w-full
-              text-slate-100/80
-              font-fredoka
-              select-none
-            `}
-          >
-            &copy; Rygenzz 2026 - 2027 GALAS IX-D
-          </span>
-          <div
-            className={`
-              w-full
-              flex
-              gap-5
-              justify-start
-              items-center
-            `}
-          >
-            <Tooltip
-              position="top"
-              text="Github"
-            >
-              <a href="https://github.com/rygnz">
-                <User/>
-              </a>
-            </Tooltip>
-            <span
-              className={`
-                text-slate-50/40
-              `}
-            >
-              |
+          <li>
+            <span className="text-slate-100/90">{lang == "en" ? en_us.footer.section1.sec2.role.dev : id.footer.section1.sec2.role.dev}</span><a href="https://www.instagram.com/rygnzzncc/">M Rafid Dwi Wicaksana</a>
+          </li>
+          <li>
+            <span className="text-slate-100/90">{lang == "en" ? en_us.footer.section1.sec2.role.test1 : id.footer.section1.sec2.role.test1}</span><a href="https://www.instagram.com/nn__argani/">Nandana Argani Arkananta</a>
+          </li>
+          <li>
+            <span className="text-slate-100/90">{lang == "en" ? en_us.footer.section1.sec2.role.test2 : id.footer.section1.sec2.role.test2}</span><a href="#">not defined yet</a>
+          </li>
+          <li>
+            <span className="text-slate-100/90">{lang == "en" ? en_us.footer.section1.sec2.role.member : id.footer.section1.sec2.role.member}</span>{lang == "en" ? en_us.footer.section1.sec2.member_value : id.footer.section1.sec2.member_value}
+          </li>
+        </FooterSection>
+        <FooterSection // About school
+          title={lang == "en" ? en_us.footer.section1.sec3.title : id.footer.section1.sec3.title}
+        >
+          <li>
+            <span>
+              Jawa timur
             </span>
-            <Tooltip
-              position="top"
-              text="Instagram"
-            >
-              <a href="https://www.instagram.com/rygnzzncc/">
-                <Share2/>
-              </a>
-            </Tooltip>
-            <span
-              className={`
-                text-slate-50/40
-              `}
-            >
-              |
+          </li>
+          <li>
+            <span>
+              SMPN 13 Kota Malang
             </span>
-            <Tooltip
-              position="top"
-              text="Tiktok"
-            >
-              <a href="https://www.tiktok.com/@genzzwae">
-                <Paperclip/>
-              </a>
-            </Tooltip>
-            <span
-              className={`
-                text-slate-50/40
-              `}
-            >
-              |
+          </li>
+          <li>
+            <span>
+              Lowokwaru, Dinoyo
             </span>
-            <Tooltip
-              position="top"
-              text="anggatakp@gmail.com"
-            >
-              <span>
-                <Mail/>
-              </span>
-            </Tooltip>
-          </div>
-          <span
-            className={`
-              w-full
-              select-none
-              text-slate-50/70
-              font-fredoka
-            `}
-          >
-            Semua yang ada di website ini hanya diperuntukkan belajar, tidak lebih.
-          </span>
-        </div>
-      </footer>
+          </li>
+          <li>
+            <a href="https://smpn13malang.sch.id/" className="hover:text-slate-50 transition-all">{lang == "en" ? en_us.footer.section1.sec3.school : id.footer.section1.sec3.school}</a>
+          </li>
+        </FooterSection>
+        <FooterSection // Social Media
+          title={lang == "en" ? en_us.footer.section1.sec4.title : id.footer.section1.sec4.title}
+        >
+          <li>
+            <a href="https://www.instagram.com/nine.dominoo" className="hover:text-slate-50 transition-all">Instagram</a>
+          </li>
+        </FooterSection>
+      </Footers>
     </main>
   );
 }

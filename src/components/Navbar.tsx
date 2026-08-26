@@ -1,4 +1,5 @@
 import React from "react"
+import { motion } from "motion/react"
 
 type NavbarType = {
   children : React.ReactNode,
@@ -21,7 +22,17 @@ export function Navbar({
   className
 }: NavbarType): React.ReactNode {
   return (
-      <nav
+      <motion.nav
+        initial={{
+          y:-90
+        }}
+        animate={{
+          y:0
+        }}
+        transition={{
+          duration:1,
+          ease:"easeInOut",
+        }}
         className={`
           ${className ?? ""}
           flex
@@ -40,6 +51,6 @@ export function Navbar({
         `}
       >
         {children}
-      </nav>
+      </motion.nav>
   )
 }

@@ -1,3 +1,5 @@
+import { motion } from "motion/react"
+
 
 type HeaderType = {
   sectionName : string
@@ -30,7 +32,23 @@ export function Header({
                 w-full
               `}
             >
-              <div
+              <motion.div
+                initial={{
+                  x:-5,
+                  opacity:0
+                }}
+                whileInView={{
+                  x:0,
+                  opacity:1
+                }}
+                transition={{
+                  duration:0.5,
+                  ease : "easeOut",
+                  delay:0.75
+                }}
+                viewport={{
+                  once: true
+                }}
                 className={`
                   flex
                   justify-center
@@ -54,9 +72,25 @@ export function Header({
                 >
                   {sectionName}
                 </span>
-              </div>
+              </motion.div>
             </div>
-            <div
+            <motion.div
+              initial={{
+                x:-5,
+                opacity:0
+              }}
+              whileInView={{
+                x:0,
+                opacity:1
+              }}
+              viewport={{
+                once:true
+              }}
+              transition={{
+                duration:0.5,
+                ease : "easeOut",
+                delay:1
+              }}
               className={`
                 flex
                 justify-start
@@ -74,8 +108,24 @@ export function Header({
               >
                 {textHeading}
               </span>
-            </div>
-            <div
+            </motion.div>
+            <motion.div
+              initial={{
+                opacity:0,
+                x:-10
+              }}
+              whileInView={{
+                x:0,
+                opacity:1
+              }}
+              transition={{
+                duration:1,
+                delay:1.25,
+                ease:"easeOut"
+              }}
+              viewport={{
+                once:true
+              }}
               className={`
                 w-full
                 flex
@@ -95,7 +145,7 @@ export function Header({
               >
                 {subtext}
               </span>
-            </div>
+            </motion.div>
           </div>
   )
 }

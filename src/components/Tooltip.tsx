@@ -8,7 +8,9 @@ type TooltipType = {
 
 const pos = {
   top : 
-    "top-0 left-0 group-hover:translate-y-[-110%] group-hover:translate-x-[-35%]"
+    "top-0 left-0 group-hover:translate-y-[-110%] group-hover:translate-x-[-35%]",
+  bottom : 
+    "top-0 left-0 group-hover:translate-y-[75%] group-hover:translate-x-[-35%]"
 }
 
 export function Tooltip({

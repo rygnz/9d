@@ -26,6 +26,7 @@ Lucide React
 Vercel
 React
 TypeScript
+Motion
 ```
 
 ## For your information

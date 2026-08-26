@@ -1,4 +1,5 @@
 import { BackgroundUnit } from "@/types/tailwindColor.types"
+import { motion } from "motion/react"
 
 type CardType = {
   children: React.ReactNode
@@ -12,7 +13,23 @@ export function Card({
   className
 }:CardType) {
   return(
-    <div
+    <motion.div
+      initial={{
+        y:10,
+        opacity:0
+      }}
+      whileInView={{
+        y:0,
+        opacity:1
+      }}
+      transition={{
+        duration:0.5,
+        ease:"backInOut",
+        delay:1.45
+      }}
+      viewport={{
+        once:true
+      }}
       className={`
         ${className ?? ""}
         ${backgroundColor ?? ""}
@@ -27,6 +44,6 @@ export function Card({
       `}
     >
       {children}
-    </div>
+    </motion.div>
   )
 }
