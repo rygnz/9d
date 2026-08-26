@@ -310,9 +310,7 @@ export default function Home() {
         className={`
           lg:flex-row
           lg:px-42
-          md:px-24
-          sm:px-12
-
+          
           sm:py-34
           md:pt-32
           dark:bg-transparent

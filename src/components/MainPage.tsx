@@ -25,6 +25,8 @@ export function Page({
         justify-between
         items-center
         gap-10
+        sm:max-w-svh
+        md:max-w-full
         w-full
         min-h-[calc(100svh-57px)]
         pt-32
