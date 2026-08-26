@@ -310,7 +310,7 @@ export default function Home() {
         className={`
           lg:flex-row
           lg:px-42
-          
+
           sm:py-34
           md:pt-32
           dark:bg-transparent
@@ -484,8 +484,8 @@ export default function Home() {
               src="/src.public.photo_of_us.jpg"
               alt="Foto kelas IX-D"
               width={1280}
-              height={560}
-              className="rounded-md object-cover select-none max-w-sm sm:max-w-lg md:max-w-xl lg:max-w-full"
+              height={540}
+              className="rounded-md object-cover select-none max-w-[20rem] sm:max-w-lg md:max-w-xl lg:max-w-full"
               loading="eager"
             />
           </motion.div>
