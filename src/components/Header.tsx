@@ -44,7 +44,7 @@ export function Header({
                 transition={{
                   duration:0.5,
                   ease : "easeOut",
-                  delay:0.75
+                  delay:0.6
                 }}
                 viewport={{
                   once: true
@@ -89,7 +89,7 @@ export function Header({
               transition={{
                 duration:0.5,
                 ease : "easeOut",
-                delay:1
+                delay:0.8
               }}
               className={`
                 flex
@@ -121,7 +121,7 @@ export function Header({
               }}
               transition={{
                 duration:1,
-                delay:1.25,
+                delay:0.9,
                 ease:"easeOut"
               }}
               viewport={{

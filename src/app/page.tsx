@@ -42,6 +42,7 @@ export default function Home() {
   },[])
 
   return (
+    // Transleting language only work with 2 lang for now
     <main>
       <Navbar // Navigation Bar // Transleted
         className={`
@@ -226,7 +227,7 @@ export default function Home() {
           </Button>
         </ul>
       </Navbar>
-      <MobileMenu // Mobile Menu if seing in mobile phone // Transleted
+      <MobileMenu // Mobile Menu if seing in mobile phone
         footer="#Credits by rygenzz"
         title="Mobile Menu"
         closeButtonAction={() => {
@@ -409,6 +410,7 @@ export default function Home() {
             `}
           >
             <TypingText
+              funcValue={true}
               text={lang == "en" ? en_us.page_introduction.title.subtitle : id.page_introduction.title.subtitle}
               ms={15}
               func={(e) => {setLangCooldown(e)}}

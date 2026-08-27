@@ -142,6 +142,7 @@ export const en_us = {
     }
   }
 }
+
 /**
  * Transleted using Deepl
  */

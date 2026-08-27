@@ -25,7 +25,7 @@ export function Card({
       transition={{
         duration:0.5,
         ease:"backInOut",
-        delay:1.45
+        delay:0.8
       }}
       viewport={{
         once:true

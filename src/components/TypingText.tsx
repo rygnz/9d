@@ -4,17 +4,19 @@ import { motion } from "motion/react"
 type TypingTextType = {
   text :string,
   ms : number,
-  func : (e : boolean) => void
+  func ?: (e : boolean) => void
+  funcValue ? : boolean
 }
 
 
 export function TypingText({
   text,
   ms,
-  func
+  func,
+  funcValue
 }:TypingTextType) {
   const [typed,SetTyped] = useState<string>('')
-
+  
   useEffect(()=>{
     const upd = () => {
       SetTyped("")
@@ -28,7 +30,9 @@ export function TypingText({
 
       if(i >= text.length) {
         window.clearInterval(interval)
-        func(false)
+        if(func && funcValue) {
+          func(funcValue)
+        }
       }
 
       return (() => window.clearInterval(interval))
