@@ -410,7 +410,7 @@ export default function Home() {
             `}
           >
             <TypingText
-              funcValue={true}
+              funcValue={false}
               text={lang == "en" ? en_us.page_introduction.title.subtitle : id.page_introduction.title.subtitle}
               ms={15}
               func={(e) => {setLangCooldown(e)}}
